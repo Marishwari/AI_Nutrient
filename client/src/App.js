@@ -9,9 +9,7 @@ import ResetPassword from "./components/ResetPassword";
 // protected page after login
 
 // Simulate auth state (replace with Redux or Context later)
-const isAuthenticated = () => {
-  return localStorage.getItem("token") ? true : false;
-};
+
 
 function App() {
   return (
