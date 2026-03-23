@@ -1,0 +1,240 @@
+/* --- Global & Body (The "Atmosphere") --- */
+:root {
+  --bg-deep-space: #0f1412; /* Very dark green */
+  --glass-bg: rgba(25, 40, 35, 0.6); /* Green-tinted glass */
+  --glass-border: rgba(173, 255, 226, 0.1);
+  --text-primary: #e0f0e8; /* Minty-white */
+  --text-secondary: #90b0a0; /* Muted green-gray */
+
+  --accent-glow: #00ffc4; /* Bright mint accent */
+  --good-color: #00ff8c; /* Bright "healthy" green */
+
+  --border-radius-l: 16px;
+  --border-radius-m: 10px;
+}
+
+/* Base styles for the page */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
+  background-color: var(--bg-deep-space);
+  background-image: radial-gradient(
+      circle at 10% 10%,
+      rgba(0, 255, 196, 0.1) 0%,
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 90% 80%,
+      rgba(0, 255, 140, 0.08) 0%,
+      transparent 30%
+    );
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* --- Container & Card --- */
+.reg-container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+@keyframes fadeInCard {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.reg-card {
+  width: 100%;
+  max-width: 650px; /* Wider card for the 2-column layout */
+  background: var(--glass-bg);
+  backdrop-filter: blur(15px) saturate(180%);
+  -webkit-backdrop-filter: blur(15px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--border-radius-l);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  padding: 2.5rem 3rem;
+  animation: fadeInCard 0.6s ease-out;
+}
+
+/* --- Title --- */
+.reg-title {
+  text-align: center;
+  font-weight: 800;
+  font-size: 2.2rem;
+  margin-top: 0;
+  margin-bottom: 2rem;
+  background: linear-gradient(90deg, #e0f0e8, #90b0a0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+/* --- Form & Inputs --- */
+.reg-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem; /* Space between rows */
+}
+
+.row {
+  display: flex;
+  gap: 1.25rem;
+}
+
+/* Style all inputs and selects to be full width */
+.row input,
+.row select {
+  width: 100%;
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 14px;
+  background: rgba(0, 0, 0, 0.2);
+  border: 2px solid var(--glass-border);
+  border-radius: var(--border-radius-m);
+  color: var(--text-primary);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Style placeholder text */
+.row input::placeholder {
+  color: var(--text-secondary);
+}
+
+/* "Neon" focus effect */
+.row input:focus,
+.row select:focus {
+  outline: none;
+  border-color: var(--accent-glow);
+  box-shadow: 0 0 15px rgba(0, 255, 196, 0.4);
+}
+
+/* --- Select (Dropdown) Specifics --- */
+.row select {
+  appearance: none; /* Remove default arrow */
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2390b0a0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 1em;
+}
+.row select:invalid,
+.row select option[value=""] {
+  color: var(--text-secondary); /* Style the "Gender (optional)" placeholder */
+}
+.row select option {
+  background: #1a2c27; /* Dark background for dropdown options */
+  color: var(--text-primary);
+}
+
+/* Hide number input arrows */
+.row input::-webkit-outer-spin-button,
+.row input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.row input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* --- Buttons --- */
+@keyframes gradient-flow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.btn-primary {
+  font-family: inherit;
+  font-size: 1.1rem;
+  font-weight: 700;
+  padding: 16px;
+  color: var(--bg-deep-space);
+  border: none;
+  border-radius: var(--border-radius-m);
+  cursor: pointer;
+  /* Animated "Fresh" Gradient */
+  background: linear-gradient(90deg, #00ffc4, #00ff8c, #00c1a1, #00ff8c);
+  background-size: 200% 200%;
+  animation: gradient-flow 4s ease-in-out infinite;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+.btn-primary:hover:not(:disabled) {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(0, 255, 140, 0.25);
+}
+.btn-primary:disabled {
+  background: #444;
+  color: #888;
+  cursor: not-allowed;
+  animation: none;
+}
+
+/* --- Divider & Google Button --- */
+.divider {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-align: center;
+  margin: 1.75rem 0;
+  position: relative;
+}
+.divider::before,
+.divider::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 40%;
+  height: 1px;
+  background: var(--glass-border);
+}
+.divider::before {
+  left: 0;
+}
+.divider::after {
+  right: 0;
+}
+
+.google-btn-container {
+  display: flex;
+  justify-content: center;
+  /* The Google button has a min-width of 300px, 
+     but this ensures it centers if the card is wider */
+}
+
+/* --- Footer --- */
+.reg-footer {
+  text-align: center;
+  margin-top: 1.75rem;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+.link-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  margin-left: 0.5rem;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--accent-glow);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.link-btn:hover {
+  text-decoration: underline;
+  text-shadow: 0 0 8px rgba(0, 255, 196, 0.5);
+}
